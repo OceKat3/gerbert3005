@@ -1,27 +1,29 @@
 require_relative "db.rb"
 
-ActiveRecord::Base.with_connection do |connection|
-  connection.execute(<<-SQL
-    DROP TABLE IF EXISTS students
-  SQL
-  )
-
-  connection.execute(<<-SQL
-    CREATE TABLE students (
-      student_id SERIAL PRIMARY KEY,
-      first_name TEXT NOT NULL,
-      last_name TEXT NOT NULL,
-      email TEXT NOT NULL UNIQUE,
-      enrollment_date DATE
+def seed
+  ActiveRecord::Base.with_connection do |connection|
+    connection.execute(<<-SQL
+      DROP TABLE IF EXISTS students
+    SQL
     )
-  SQL
-  )
 
-  connection.execute(<<-SQL
-    INSERT INTO students (first_name, last_name, email, enrollment_date) VALUES
-      ('John', 'Doe', 'john.doe@example.com', '2023-09-01'),
-      ('Jane', 'Smith', 'jane.smith@example.com', '2023-09-01'),
-      ('Jim', 'Beam', 'jim.beam@example.com', '2023-09-02');
-  SQL
-  )
+    connection.execute(<<-SQL
+      CREATE TABLE students (
+        student_id SERIAL PRIMARY KEY,
+        first_name TEXT NOT NULL,
+        last_name TEXT NOT NULL,
+        email TEXT NOT NULL UNIQUE,
+        enrollment_date DATE
+      )
+    SQL
+    )
+
+    connection.execute(<<-SQL
+      INSERT INTO students (first_name, last_name, email, enrollment_date) VALUES
+        ('John', 'Doe', 'john.doe@example.com', '2023-09-01'),
+        ('Jane', 'Smith', 'jane.smith@example.com', '2023-09-01'),
+        ('Jim', 'Beam', 'jim.beam@example.com', '2023-09-02');
+    SQL
+    )
+  end
 end

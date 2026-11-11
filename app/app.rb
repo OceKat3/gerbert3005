@@ -9,7 +9,17 @@ class SQLApp < ActiveRecord::Base
   class << self
     include ActiveRecord::Sanitization::ClassMethods
 
-    def getAllStudents = execute_sql("SELECT * FROM students").to_a
+    def execute_sql(sql, *args)
+      ActiveRecord::Base.connection.execute(
+        sanitize_sql_array([sql, *args])
+      )
+    end
+
+    def query_sql(sql, *args)
+      execute_sql(sql, *args).to_a.map { |hash| hash.transform_keys {|k| k.to_sym}}
+    end
+
+    def getAllStudents = query_sql("SELECT * FROM students")
 
     def addStudent(fname, lname, email, enrollment_date)
       execute_sql(
@@ -17,7 +27,7 @@ class SQLApp < ActiveRecord::Base
         fname, lname, email, enrollment_date
       )
     rescue ActiveRecord::RecordNotUnique 
-      nil 
+      nil
     end
 
     def updateStudentEmail(student_id, new_email) = execute_sql(
@@ -29,14 +39,6 @@ class SQLApp < ActiveRecord::Base
         "DELETE FROM students WHERE student_id=?",
         student_id
       )
-
-    private
-    
-    def execute_sql(sql, *args)
-      ActiveRecord::Base.connection.execute(
-        sanitize_sql_array([sql, *args])
-      )
-    end
     
   end
 end
@@ -46,7 +48,11 @@ class ORMApp
   class << self
     def getAllStudents = Student.all.to_a
     
-    def addStudent(*args, **kwargs) = Student.create!(*args, **kwargs)
+    def addStudent(*args, **kwargs)
+      Student.create!(*args, **kwargs)
+    rescue ActiveRecord::RecordNotUnique 
+      nil
+    end
 
     def updateStudentEmail(student_id, email) = Student.find_by(student_id:)&.update!(email:)
 

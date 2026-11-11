@@ -75,11 +75,14 @@ ActiveRecord is the most popular ruby ORM. It's a part of the larger Ruby on Rai
 
 ## container stuff
 
-https://docs.docker.com/compose/gettingstarted
-
 I decided to use this project as an opportunity to learn more about docker.
 
 The ruby app and the two services postgres and pgadmin are run through docker compose, which is all controlled in compose.yaml
 
 This project also uses a vscode dev container, which requires the dev containers addon; vscode will start a container and ssh into it. What's nice about working in a container is that I don't have to install ruby on my computer. Ruby is very frustrating to install, and it's equally annoying to manage ruby versions, so this is quite a lifesaver. 
 
+## resources
+
+https://minite.st/docs/
+https://docs.docker.com/compose/gettingstarted
+https://api.rubyonrails.org/v7.1/classes/ActiveRecord/Sanitization/ClassMethods.html#method-i-sanitize_sql_array

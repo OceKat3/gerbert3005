@@ -1,7 +1,10 @@
 # gerbert3005
 
 comp3005 datbabase management systems assignment 3
+
 https://youtu.be/VRsQnKaHp18
+
+a simple postgres schema and ruby functions that do CRUD operations
 
 ## usage
 

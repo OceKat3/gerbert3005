@@ -11,11 +11,6 @@ irb will automatically import the application so that you may call functions fro
 
 ```
 root@docker-desktop:/3005# irb
-
-⢀⡴⠊⢉⡟⢿  IRB v1.19.0 - Ruby 3.3.13
-⣎⣀⣴⡋⡟⣻  "history -g pattern" to search history
-⣟⣼⣱⣽⣟⣾  /3005
-
 irb(main):001> ORMApp.getAllStudents
 => 
 [#<Student:0x000078dcdb0bc080 student_id: 2, first_name: "Jane", last_name: "Smith", email: "jane.smith@example.com", enrollment_date: "2023-09-01">,

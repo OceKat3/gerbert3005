@@ -1,5 +1,6 @@
 require_relative "db.rb"
 
+# initialize students table to a known state
 def seed
   ActiveRecord::Base.with_connection do |connection|
     connection.execute(<<-SQL

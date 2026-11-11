@@ -2,14 +2,14 @@ DATABASE = "gerb_db"
 
 require 'rubygems'
 require 'bundler'
+require 'pg'
 
 Bundler.require :default
 
 
 
 ActiveRecord::Base.establish_connection(
-  "postgres://postgres@localhost/#{DATABASE}"
+  "postgres://postgres@localhost"
 )
 
-puts ActiveRecord::Base.connected?
-puts ActiveRecord::Base.connection.execute("SELECT 1;")
+ActiveRecord::Base.connection.execute("SELECT 1;")

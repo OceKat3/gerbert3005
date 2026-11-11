@@ -1,5 +1,11 @@
 # gerbert3005
 
+## usage
+
+the assignment (comp3005 assignment 3) does not ask for a web frontend or anything, so this app is just a collection of ruby functions.
+
+the .irbrc file means that, when you run irb, app.rb is automatically loaded
+
 ## ruby
 
 For my other classes, i've been using lots of python and c++. I wanted to switch it up and try the best language in the world, ruby

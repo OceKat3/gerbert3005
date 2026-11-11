@@ -11,7 +11,11 @@
 	"dockerComposeFile": [ "../compose.yaml" ],
 	"service": "dev",
 	"runServices": ["postgres", "pgadmin"],
-	"workspaceFolder": "/3005"
+	"workspaceFolder": "/3005",
+
+	// not sure which one of these works, or if neither works
+	"extensions": ["shopify.ruby-lsp"],
+	"customizations/vscode/extensions": ["shopify.ruby-lsp"]
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],

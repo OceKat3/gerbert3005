@@ -1,8 +1,10 @@
 # gerbert3005
 
+comp3005 datbabase management systems assignment 3
+
 ## usage
 
-The assignment (comp3005 assignment 3) does not ask for a web frontend or anything, so this app is just a collection of ruby functions. To call these functions, use interactive ruby with the irb command, or run the tests with bin/test inside the dev container/service. 
+The assignment (comp3005 assignment 3) does not ask for a web frontend or anything, so this app is just a collection of ruby functions. To call these functions, use interactive ruby with the irb command, or run the tests with bin/test inside the dev service. 
 
 irb will automatically import the application so that you may call functions from the console. e.g:
 
@@ -80,6 +82,24 @@ I decided to use this project as an opportunity to learn more about docker.
 The ruby app and the two services postgres and pgadmin are run through docker compose, which is all controlled in compose.yaml
 
 This project also uses a vscode dev container, which requires the dev containers addon; vscode will start a container and ssh into it. What's nice about working in a container is that I don't have to install ruby on my computer. Ruby is very frustrating to install, and it's equally annoying to manage ruby versions, so this is quite a lifesaver. 
+
+## file structure
+
+compose.yaml and ./decvcontainer are related to the development environment
+
+app/db.rb opens a connection to postgres
+app/seed.rb exposes a function seed, which resets the students table to the given data from the assignment
+app/student.rb defines a model for the ActiveRecord ORM
+
+app/app.rb is mostly where a TA should look to see if the assignment is complete
+app/test.rb runs tests to make sure app/app.rb works
+
+bin/seed and bin/test literally just run app/seed.rb and app/test.eb
+
+.irbrc is a ruby script that adds to the default behaviour of the irb command when run in this directory
+(in this case, .irbrc loads app/app.rb and app/seed.rb)
+
+Gemfile is like a package.json or requirements.txt, it is also a ruby script
 
 ## resources
 

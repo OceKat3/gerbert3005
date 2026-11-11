@@ -9,6 +9,8 @@ class SQLApp < ActiveRecord::Base
   class << self
     include ActiveRecord::Sanitization::ClassMethods
 
+    # first argument is sql string, subsequent arguments are substituted for ?s in the sql string
+    # e.g. execute_sql("select * from table where column1=? and column2=?", 25, "asdasd")
     def execute_sql(sql, *args)
       ActiveRecord::Base.connection.execute(
         sanitize_sql_array([sql, *args])
@@ -30,10 +32,14 @@ class SQLApp < ActiveRecord::Base
       nil
     end
 
-    def updateStudentEmail(student_id, new_email) = execute_sql(
+    def updateStudentEmail(student_id, new_email)
+      execute_sql(
         "UPDATE students SET email=? WHERE student_id=?", 
         new_email, student_id
       )
+    rescue ActiveRecord::RecordNotUnique
+      nil
+    end
     
     def deleteStudent(student_id) = execute_sql(
         "DELETE FROM students WHERE student_id=?",
@@ -54,8 +60,12 @@ class ORMApp
       nil
     end
 
-    def updateStudentEmail(student_id, email) = Student.find_by(student_id:)&.update!(email:)
-
+    def updateStudentEmail(student_id, email) 
+      Student.find_by(student_id:)&.update!(email:)
+    rescue ActiveRecord::RecordNotUnique
+      nil
+    end
+    
     def deleteStudent(student_id) = Student.find_by(student_id:)&.delete
   end
 end

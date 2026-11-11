@@ -31,6 +31,9 @@ describe SQLApp do
     _(SQLApp.query_sql(
       "SELECT email FROM students WHERE student_id=1")
     ).must_equal [{email: "x@y.z"}]
+
+    # do not duplicate student emails, do not throw an error
+    _(SQLApp.updateStudentEmail 2, "x@y.z").must_be_nil
   end
 
   it "deletes a student" do
@@ -74,6 +77,9 @@ describe ORMApp do
     _(SQLApp.query_sql(
       "SELECT email FROM students WHERE student_id=1")
     ).must_equal [{email: "x@y.z"}]
+
+    # do not duplicate student emails, do not throw an error
+    _(ORMApp.updateStudentEmail 2, "x@y.z").must_be_nil
   end
 
   it "deletes a student" do

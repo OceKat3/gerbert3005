@@ -1,0 +1,9 @@
+{
+  "features": {
+    "ghcr.io/postfinance/devcontainer-features/docker-out:1": {
+      "version": "1.1.0",
+      "resolved": "ghcr.io/postfinance/devcontainer-features/docker-out@sha256:3381ec689dc586fc3ba64df5bd5949f43669e2eef40b1f47fcf5eb638ebed1d3",
+      "integrity": "sha256:3381ec689dc586fc3ba64df5bd5949f43669e2eef40b1f47fcf5eb638ebed1d3"
+    }
+  }
+}

@@ -1,6 +1,7 @@
 # gerbert3005
 
 comp3005 datbabase management systems assignment 3
+https://youtu.be/VRsQnKaHp18
 
 ## usage
 
